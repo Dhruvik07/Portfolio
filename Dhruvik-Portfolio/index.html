@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruvik Asmani | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        accent: '#38bdf8',
+                        accentDark: '#0284c7',
+                        card: 'rgba(30, 41, 59, 0.7)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8, #818cf8, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.1);
+        }
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        ::selection { background-color: rgba(56, 189, 248, 0.3); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 glass">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter self-center content-center"><span class="gradient-text">DA.</span></a>
+            <ul class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <li><a href="#about" class="hover:text-accent transition-colors">About</a></li>
+                <li><a href="#experience" class="hover:text-accent transition-colors">Experience</a></li>
+                <li><a href="#projects" class="hover:text-accent transition-colors">Projects</a></li>
+                <li><a href="#contact" class="hover:text-accent transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-darker z-0"></div>
+        <div class="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-12 z-10">
+            <div class="flex-1 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-accent mb-4">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                    </span>
+                    Available for Work
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold font-sans tracking-tight leading-tight">
+                    Hi, I'm <br/>
+                    <span class="gradient-text">Dhruvik Asmani</span>
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed">
+                    Software Engineer • Master's in Computer Science @ ASU • 
+                    Former Application Engineer at <span class="font-semibold text-white">Oracle</span>. 
+                    I build robust scalable systems and modern dynamic user interfaces.
+                </p>
+                <div class="pt-4 flex gap-4">
+                    <a href="#projects" class="px-8 py-3 rounded-lg bg-gradient-to-r from-accent to-indigo-500 text-white font-medium hover:opacity-90 transition-opacity shadow-lg shadow-accent/20">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="px-8 py-3 rounded-lg glass font-medium hover:bg-slate-800 transition-colors border border-slate-700">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex-1 relative justify-center flex animate-float">
+                <div class="absolute inset-0 bg-gradient-to-tr from-accent to-purple-500 blur-3xl opacity-20 rounded-full"></div>
+                <div class="relative w-72 h-72 md:w-[400px] md:h-[400px] rounded-[2rem] overflow-hidden glass p-2 rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <img src="assets/Profile.png" alt="Dhruvik Asmani" class="w-full h-full object-cover rounded-[1.5rem]" onerror="this.src='https://ui-avatars.com/api/?name=Dhruvik+Asmani&background=020617&color=fff&size=512'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 flex items-center gap-4">
+                <span class="w-12 h-[2px] bg-accent"></span> About Me
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-6 text-slate-300 text-lg leading-relaxed">
+                    <p>
+                        I'm a dedicated Software Engineer with over 3 years of professional experience across the full stack. 
+                        My primary expertise lies in <strong class="text-white font-medium">Java, JavaScript, SQL, and building robust REST APIs.</strong>
+                    </p>
+                    <p>
+                        At <strong class="text-white font-medium">Oracle</strong>, I helped enhance the HCM Workforce Structure module and built critical PL/SQL diagnostic 
+                        tools used by clients globally to detect database corruption. I also transitioned legacy thick-client ADF workflows into sleek, modern VBCS UIs.
+                    </p>
+                    <p>
+                        Currently, I'm pursuing my Master of Science in Computer Science at <strong class="text-white font-medium">Arizona State University (ASU)</strong> to deepen my distributed systems and algorithmic knowledge.
+                    </p>
+                </div>
+
+                <div class="glass p-8 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-6">Top Skills</h3>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">Java</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">Python</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">JavaScript</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">React</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">Node.js</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">SQL / PL/SQL</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">REST API</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">Spring Boot</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded text-sm text-slate-300 border border-slate-700 hover:border-accent transition-colors">Oracle VBCS / ADF</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-4">Education</h3>
+                        <div class="flex items-center gap-4">
+                            <img src="assets/ungrad_cllg_logo.png" alt="University" class="w-12 h-12 object-contain bg-white rounded p-1" onerror="this.style.display='none'">
+                            <div>
+                                <p class="font-medium text-white">Arizona State University</p>
+                                <p class="text-sm text-slate-400">M.S. Computer Science (2025–2027)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-dark">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 flex items-center justify-end gap-4 text-right">
+                Experience <span class="w-12 h-[2px] bg-accent"></span>
+            </h2>
+
+            <div class="space-y-8">
+                <!-- Oracle -->
+                <div class="glass p-8 rounded-2xl flex flex-col md:flex-row gap-8 card-hover relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-accent opacity-5 blur-3xl rounded-full"></div>
+                    <div class="md:w-1/4">
+                        <img src="assets/Oracle-logo.png" alt="Oracle Logo" class="h-12 w-auto object-contain bg-white/90 p-2 rounded mb-4" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg'">
+                        <p class="text-sm text-accent font-medium mt-1">June 2022 – July 2025</p>
+                        <p class="text-sm text-slate-400">GIFT City, India</p>
+                    </div>
+                    <div class="md:w-3/4 space-y-4">
+                        <h3 class="text-2xl font-bold text-white">Application Engineer</h3>
+                        <p class="text-slate-400">Software Engineer – HCM Workforce Structure</p>
+                        <ul class="list-disc list-inside text-slate-300 space-y-2 leading-relaxed">
+                            <li>Developed and enhanced features in the Workforce Structure module of Oracle's HCM product.</li>
+                            <li>Created a PL/SQL diagnostic test utilized globally to detect and resolve data corruptions, significantly reducing downtime.</li>
+                            <li>Investigated and debugged problems in large-scale data upload systems (HDL & HSDL), collaborating with the Data Loader team.</li>
+                            <li>Transitioned existing ADF workflows to Oracle's VBCS, recreating logic in JS and modernizing the UI.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Group Technologies -->
+                <div class="glass p-8 rounded-2xl flex flex-col md:flex-row gap-8 card-hover relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 opacity-5 blur-3xl rounded-full"></div>
+                    <div class="md:w-1/4">
+                        <img src="assets/Company.jpg" alt="Company" class="h-12 w-auto object-contain rounded bg-white/10 p-1 mb-4" onerror="this.src='https://ui-avatars.com/api/?name=Group+Tech&background=1e293b&color=38bdf8'">
+                        <p class="text-sm text-accent font-medium mt-1">Jan 2022 – May 2022</p>
+                        <p class="text-sm text-slate-400">Surat, India</p>
+                    </div>
+                    <div class="md:w-3/4 space-y-4">
+                        <h3 class="text-2xl font-bold text-white">Software Intern</h3>
+                        <p class="text-slate-400">Group Technologies</p>
+                        <ul class="list-disc list-inside text-slate-300 space-y-2 leading-relaxed">
+                            <li>Developed and deployed a Workflow Management System from scratch using <strong>ReactJS and NodeJS</strong>.</li>
+                            <li>Integrated secure <strong>JWT-based authentication</strong> and RESTful APIs for role-based access control.</li>
+                            <li>Adopted Scrum development iterations, optimizing DB queries to reduce workflow execution time by 30%.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 flex items-center gap-4">
+                <span class="w-12 h-[2px] bg-accent"></span> Featured Projects
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Robowiki -->
+                <div class="glass rounded-2xl overflow-hidden card-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative group">
+                        <img src="assets/robo_wikipedia.jpeg" alt="Robotics Wikipedia" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1000&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-darker/50 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-white mb-2">Robotics Wikipedia</h3>
+                        <p class="text-accent text-sm mb-4">HTML • CSS • SQL • PHP</p>
+                        <p class="text-slate-300 mb-6 flex-1">
+                            A comprehensive, user-friendly website built from scratch to provide university students with intuitive learning resources and documentation on robotics.
+                        </p>
+                        <a href="https://github.com/Dhruvik07/robowiki" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white font-medium hover:text-accent transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                            View Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- COVID DBMS -->
+                <div class="glass rounded-2xl overflow-hidden card-hover flex flex-col">
+                    <div class="h-48 overflow-hidden relative group">
+                        <div class="w-full h-full bg-slate-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <span class="text-4xl">📊</span>
+                        </div>
+                        <div class="absolute inset-0 bg-darker/50 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-white mb-2">COVID Tracking Database</h3>
+                        <p class="text-accent text-sm mb-4">SQL • Database Design • ER Models</p>
+                        <p class="text-slate-300 mb-6 flex-1">
+                            Designed ER diagrams and executed complex SQL queries to model real-world scenarios for tracking vaccine development and patient outcomes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="py-12 border-t border-slate-800 relative bg-darker overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 text-center z-10 relative">
+            <h2 class="text-3xl font-bold mb-6">Let's Connect</h2>
+            <p class="text-slate-400 max-w-lg mx-auto mb-8">
+                I'm actively seeking new opportunities. Whether it's a question, a project collaboration, or just saying hi, I'll try my best to get back to you!
+            </p>
+            <a href="mailto:dhruvikasmani2000@gmail.com" class="inline-block px-8 py-4 rounded-lg bg-white text-darker font-bold hover:bg-slate-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+                Say Hello
+            </a>
+            
+            <div class="mt-16 flex justify-between items-center text-slate-500 text-sm border-t border-slate-800 pt-8">
+                <p>&copy; 2026 Dhruvik Asmani. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="https://github.com/Dhruvik07" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Particles library (assuming particles.js is standard, it will initialize itself if script.js handles it. If not, we do it in script.js) -->
+    <script src="particles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
