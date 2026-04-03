@@ -204,3 +204,58 @@ document.addEventListener('DOMContentLoaded', () => {
     animateSwarm();
 
 });
+
+// --- Typing Animation for Hero Code Block ---
+document.addEventListener('DOMContentLoaded', () => {
+    const codeBlock = document.getElementById('hero-code-block');
+    if (!codeBlock) return;
+    
+    const originalHTML = codeBlock.innerHTML.trim();
+    codeBlock.innerHTML = '';
+    codeBlock.classList.remove('opacity-0');
+    
+    let textNodes = [];
+    let i = 0;
+    while(i < originalHTML.length) {
+        if (originalHTML.substring(i, i+6) === '&nbsp;') {
+            textNodes.push('&nbsp;');
+            i += 6;
+            continue;
+        } else if (originalHTML[i] === '<') {
+            let tag = '';
+            while(i < originalHTML.length && originalHTML[i] !== '>') {
+                tag += originalHTML[i];
+                i++;
+            }
+            tag += '>';
+            textNodes.push(tag);
+        } else {
+            textNodes.push(originalHTML[i]);
+            i++;
+        }
+    }
+
+    let currentIndex = 0;
+    
+    function typeChar() {
+        if (currentIndex < textNodes.length) {
+            let token = textNodes[currentIndex];
+            codeBlock.innerHTML += token;
+            currentIndex++;
+            
+            let delay = 20 + Math.random() * 30; // 20-50ms typing variance
+            
+            if (token.startsWith('<') || token === '&nbsp;') {
+                delay = 0; 
+                while(currentIndex < textNodes.length && (textNodes[currentIndex].startsWith('<') || textNodes[currentIndex] === '&nbsp;')) {
+                    codeBlock.innerHTML += textNodes[currentIndex];
+                    currentIndex++;
+                }
+            }
+            
+            setTimeout(typeChar, delay);
+        }
+    }
+    
+    setTimeout(typeChar, 800);
+});
